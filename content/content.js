@@ -1,10 +1,7 @@
-// Runs on every Amazon.in product page. No build step — plain ES2020, no imports,
-// so it loads exactly as listed in manifest.json with zero bundler dependency.
-
 const SELECTORS = {
   title: '#productTitle',
   priceWhole:
-    '.a-price .a-offscreen, #corePrice_feature_div .a-price .a-offscreen, #corePriceDisplay_desktop_feature_div .a-price .a-offscreen',
+    '.a-price .a-offscreen, #corePrice_feature_div .a-price .a-offscreen, #corePriceDisplay_desktop_feature_div .a-price .a-offscreen, .apexPriceToPay .a-offscreen, #priceblock_ourprice',
   ratingPopover: '#acrPopover',
   reviewCountText: '#acrCustomerReviewText',
 };
@@ -17,8 +14,9 @@ const BUY_SCORE_WEIGHTS = {
 };
 
 function getAsinFromUrl() {
-  const match = window.location.pathname.match(/\/dp\/([A-Z0-9]{10})/);
-  return match ? match[1] : null;
+  // Support both /dp/ASIN and /gp/product/ASIN formats
+  const match = window.location.pathname.match(/\/(?:dp|gp\/product)\/([A-Z0-9]{10})/i);
+  return match ? match[1].toUpperCase() : null;
 }
 
 function parsePriceText(text) {
@@ -77,7 +75,7 @@ function computeBuyScore(product, priceHistoryLow) {
   reasons.push(`${product.reviewCount} reviews → ${volumeScore.toFixed(0)}/${BUY_SCORE_WEIGHTS.reviewVolume} pts`);
 
   if (priceHistoryLow != null && priceHistoryLow > 0) {
-    const ratio = product.price / priceHistoryLow; // 1.0 = at the lowest seen price
+    const ratio = product.price / priceHistoryLow;
     const priceScore = Math.max(0, 1 - (ratio - 1)) * BUY_SCORE_WEIGHTS.priceVsHistory;
     const clamped = Math.min(priceScore, BUY_SCORE_WEIGHTS.priceVsHistory);
     score += clamped;
@@ -289,7 +287,7 @@ async function buildPanel(product) {
           lastCheckedPrice: product.price,
         },
       });
-      renderPanelReplacement(product, targetPrice);
+      renderPanelReplacement();
     });
   }
 
@@ -314,7 +312,6 @@ async function buildPanel(product) {
   }
 }
 
-let mounted = false;
 async function mountPanel() {
   const existing = document.getElementById('pricescout-host');
   if (existing) existing.remove();
@@ -330,7 +327,6 @@ async function mountPanel() {
 
 function init() {
   mountPanel();
-  // Amazon PDPs sometimes rehydrate price/rating async — re-check once, debounced.
   let timeout = null;
   const observer = new MutationObserver(() => {
     clearTimeout(timeout);
