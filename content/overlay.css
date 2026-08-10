@@ -262,3 +262,48 @@
   text-decoration: none;
   margin-top: 4px;
 }
+/* Base Theme (Light) */
+:host {
+  --ps-bg: #ffffff;
+  --ps-text: #111827;
+  --ps-text-muted: #6b7280;
+  --ps-border: #e5e7eb;
+  --ps-card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --ps-accent: #2563eb;
+  --ps-accent-hover: #1d4ed8;
+  --ps-button-bg: #f3f4f6;
+  --ps-button-text: #374151;
+}
+
+/* Dark Theme Overrides */
+.pricescout-panel.pricescout-dark {
+  --ps-bg: #1f2937;
+  --ps-text: #f9fafb;
+  --ps-text-muted: #9ca3af;
+  --ps-border: #374151;
+  --ps-card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  --ps-button-bg: #374151;
+  --ps-button-text: #e5e7eb;
+}
+
+/* Apply Variables to Your Card Container */
+.pricescout-card {
+  background-color: var(--ps-bg);
+  color: var(--ps-text);
+  border: 1px solid var(--ps-border);
+  box-shadow: var(--ps-card-shadow);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pricescout-muted, .pricescout-footer {
+  color: var(--ps-text-muted);
+}
+
+.pricescout-dark-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px;
+  color: var(--ps-text-muted);
+}
