@@ -197,16 +197,22 @@ async function buildPanel(product) {
 
   const { item: existingWatch } = await sendMessage({ type: 'PRICESCOUT_GET_WATCH_ITEM', asin: product.asin });
 
+  // Get saved dark mode preference
+  const { isDarkMode } = await chrome.storage.local.get('isDarkMode');
+
   const suggestedTarget = Math.round(product.price * 0.9);
 
   const panel = document.createElement('div');
-  panel.className = 'pricescout-panel pricescout-collapsed';
+  panel.className = `pricescout-panel pricescout-collapsed ${isDarkMode ? 'pricescout-dark' : ''}`;
   panel.innerHTML = `
     <button class="pricescout-launcher" aria-label="Open PriceScout">🔎</button>
     <div class="pricescout-card" hidden>
       <div class="pricescout-header">
         <span class="pricescout-brand">PriceScout</span>
-        <button class="pricescout-close" aria-label="Close">✕</button>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="pricescout-dark-toggle" aria-label="Toggle Dark Mode">${isDarkMode ? '☀️' : '🌙'}</button>
+          <button class="pricescout-close" aria-label="Close">✕</button>
+        </div>
       </div>
       <div class="pricescout-score-row">
         <div class="pricescout-score-badge">${score}</div>
@@ -253,6 +259,14 @@ async function buildPanel(product) {
     else card.setAttribute('hidden', '');
   });
   panel.querySelector('.pricescout-close').addEventListener('click', () => card.setAttribute('hidden', ''));
+
+  // Dark Mode Toggle Logic
+  const darkToggle = panel.querySelector('.pricescout-dark-toggle');
+  darkToggle.addEventListener('click', async () => {
+    const isDark = panel.classList.toggle('pricescout-dark');
+    darkToggle.textContent = isDark ? '☀️' : '🌙';
+    await chrome.storage.local.set({ isDarkMode: isDark });
+  });
 
   const reasonsToggle = panel.querySelector('.pricescout-reasons-toggle');
   const reasonsList = panel.querySelector('.pricescout-reasons');
