@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <span class="brand">PriceScout</span>
+      <span class="tag">Amazon India buy assistant</span>
+    </header>
+
+    <section id="watchlist-section">
+      <div class="section-title-row">
+        <h2>Watchlist</h2>
+        <span id="watch-count" class="count-pill">0</span>
+      </div>
+      <div id="watchlist-list"></div>
+      <p id="empty-state" class="empty-state" hidden>
+        No products watched yet. Open a product page on amazon.in and click the PriceScout button to set a price target.
+      </p>
+    </section>
+
+    <section id="settings-section">
+      <h2>Check frequency</h2>
+      <div class="settings-row">
+        <select id="interval-select">
+          <option value="15">Every 15 minutes</option>
+          <option value="30">Every 30 minutes</option>
+          <option value="60">Every hour</option>
+          <option value="180">Every 3 hours</option>
+          <option value="360">Every 6 hours</option>
+        </select>
+      </div>
+    </section>
+
+    <footer>Runs entirely in your browser · no account, no server</footer>
+    <script src="popup.js"></script>
+  </body>
+</html>
