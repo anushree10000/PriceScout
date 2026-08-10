@@ -8,9 +8,15 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "permissions": ["storage", "alarms", "notifications", "offscreen"],
+  "permissions": [
+    "storage",
+    "alarms",
+    "notifications",
+    "offscreen"
+  ],
   "host_permissions": [
     "https://www.amazon.in/*",
+    "https://amazon.in/*",
     "https://www.reddit.com/*",
     "https://www.youtube.com/*"
   ],
@@ -20,10 +26,27 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.amazon.in/*"],
+      "matches": [
+        "https://www.amazon.in/*",
+        "https://amazon.in/*"
+      ],
       "js": ["content/content.js"],
       "css": ["content/overlay.css"],
       "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "content/overlay.css",
+        "icons/icon16.png",
+        "icons/icon48.png",
+        "icons/icon128.png"
+      ],
+      "matches": [
+        "https://www.amazon.in/*",
+        "https://amazon.in/*"
+      ]
     }
   ],
   "action": {
