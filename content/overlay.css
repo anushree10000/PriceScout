@@ -1,0 +1,183 @@
+:host, * {
+  box-sizing: border-box;
+  font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.pricescout-panel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2147483647;
+}
+
+.pricescout-launcher {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: #0d9488;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(13, 148, 136, 0.35);
+  transition: transform 0.15s ease;
+}
+.pricescout-launcher:hover {
+  transform: scale(1.06);
+}
+
+.pricescout-card {
+  position: absolute;
+  bottom: 64px;
+  right: 0;
+  width: 280px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  padding: 16px;
+  color: #1f2937;
+}
+
+.pricescout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.pricescout-brand {
+  font-weight: 700;
+  font-size: 14px;
+  color: #0d9488;
+  letter-spacing: 0.2px;
+}
+.pricescout-close {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.pricescout-score-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.pricescout-score-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-weight: 800;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pricescout-score-label {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.pricescout-reasons-toggle {
+  border: none;
+  background: transparent;
+  color: #0d9488;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 8px;
+}
+.pricescout-reasons {
+  list-style: none;
+  margin: 0 0 10px 0;
+  padding: 8px 10px;
+  background: #f9fafb;
+  border-radius: 8px;
+  font-size: 11.5px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.pricescout-price-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.pricescout-muted {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.pricescout-watch-section {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+.pricescout-target-label {
+  font-size: 12px;
+  color: #6b7280;
+  display: block;
+  margin-bottom: 6px;
+}
+.pricescout-target-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pricescout-target-row span {
+  font-size: 13px;
+  color: #6b7280;
+}
+.pricescout-target-input {
+  flex: 1;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+.pricescout-watch-btn {
+  border: none;
+  background: #0d9488;
+  color: white;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.pricescout-watch-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.pricescout-watching-badge {
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.pricescout-stop-watch {
+  border: 1px solid #e5e7eb;
+  background: white;
+  color: #6b7280;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.pricescout-footer {
+  margin-top: 10px;
+  font-size: 10.5px;
+  color: #b0b4bb;
+  text-align: center;
+}
